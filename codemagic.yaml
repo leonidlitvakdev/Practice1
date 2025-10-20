@@ -4,25 +4,18 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        APPLE_ID: $APPLE_ID          # your Apple ID email, e.g., nchalygu@verizon.net
+        APPLE_ID: $APPLE_ID               # your Apple ID email
         APP_SPECIFIC_PASSWORD: $APP_SPECIFIC_PASSWORD  # generated app-specific password
-      flutter: false
       xcode: latest
-      cocoapods: default
     triggering:
       events:
         - push
-        - manual
     scripts:
-      - name: Install dependencies
-        script: |
-          set -e
-          pod install --project-directory=.
       - name: Build iOS app
         script: |
           set -e
           xcodebuild clean archive \
-            -workspace Practice1.xcworkspace \
+            -project Practice1.xcodeproj \
             -scheme Practice1 \
             -configuration Release \
             -destination "generic/platform=iOS" \
