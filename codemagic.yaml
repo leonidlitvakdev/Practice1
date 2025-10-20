@@ -21,7 +21,9 @@ workflows:
             -destination "generic/platform=iOS" \
             -archivePath $CM_BUILD_DIR/Practice1.xcarchive \
             DEVELOPMENT_TEAM=PTK28R87A4 \
-            CODE_SIGN_IDENTITY="iPhone Developer"
+            CODE_SIGN_IDENTITY="iPhone Developer" \
+            -allowProvisioningUpdates
+
       - name: Export IPA
         script: |
           set -e
